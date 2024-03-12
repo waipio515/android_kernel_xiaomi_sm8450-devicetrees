@@ -228,6 +228,30 @@
 		compatible = "qcom,devfreq-cdev";
 		qcom,devfreq = <&msm_gpu>;
 	};
+
+	qcom,userspace-cdev {
+		compatible = "qcom,userspace-cooling-devices";
+
+		display_fps: display-fps {
+			qcom,max-level = <4>;
+			#cooling-cells = <2>;
+		};
+	};
+
+	cx_pe: cx_rdpm_pe@635000 {
+		status = "disabled";
+		compatible = "qcom,policy-engine";
+		#thermal-sensor-cells = <0>;
+		reg = <0x635000 0x1000>;
+		interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
+	};
+
+	mx_pe: mx_rdpm_pe@637000 {
+		compatible = "qcom,policy-engine";
+		#thermal-sensor-cells = <0>;
+		reg = <0x637000 0x1000>;
+		interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
+	};
 };
 
 #include "waipio-thermal-modem.dtsi"
