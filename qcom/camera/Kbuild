@@ -1,6 +1,16 @@
 DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/camera-kernel
 
+ifeq ($(CONFIG_ARCH_KALAMA), y)
 include $(srctree)/$(src)/config/kalama.mk
+endif
+
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+include $(srctree)/$(src)/config/waipio.mk
+endif
+
+ifeq ($(CONFIG_ARCH_PARROT), y)
+include $(srctree)/$(src)/config/parrot.mk
+endif
 
 always-y	:= $(dtbo-y) $(dtb-y)
 subdir-y	:= $(dts-dirs)
